@@ -1,0 +1,17 @@
+body {
+  justify-items: center;
+  margin: 10px;
+  background-color: #dbdbdb;
+}
+
+#mainbutton {
+  width: 80%;
+  max-width: 500px;
+  height: 40px;
+  border: 0.5px solid;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
