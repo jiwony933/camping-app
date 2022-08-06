@@ -10,12 +10,19 @@ import Food from "./components/WriteFood";
 import CheckList from "./components/WriteCheckList";
 import Place from "./components/SearchPlace";
 import MyPage from "./components/MyPage";
+import AppRouter from "./components/router";
+import { authService } from "./fbase";
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(authService.currentUser);
   return (
-    <BrowserRouter>
+    <>
+      <AppRouter isLoggedIn={isLoggedIn} />
+      <footer>&copy;camping app {new Date().getFullYear()}</footer>
+    </>
+    /* <BrowserRouter>
       <div>Logo</div>
-      <Routes>
+      <Routes> 
         <Route path="/" element={<MainBoard />} />
         <Route path="/schedule" element={<Schedule />} />
         <Route path="/diary" element={<Diary />} />
@@ -25,7 +32,7 @@ function App() {
         <Route path="/mypage" element={<MyPage />} />
       </Routes>
       <Nav />
-    </BrowserRouter>
+    </BrowserRouter> */
   );
 }
 

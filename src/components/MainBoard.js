@@ -15,7 +15,7 @@ function MainBoard() {
     <div>
       <Menu>
         {items.map((item) => (
-          <Link to={item.link}>
+          <Link to={item.link} key={item.id}>
             <MainBoardItems title={item.title} />
           </Link>
         ))}

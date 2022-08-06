@@ -7,7 +7,7 @@ function SearchPlace() {
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(
-        `https://api.visitkorea.or.kr/openapi/service/rest/GoCamping/basedList?ServiceKey=eoa%2FGqND7kc4kFyYrprGMRO2HR7PqGaqIpR197C4GKlnXAHAU0SbPSWitA%2BbOwTpcKFeXNXbmFkMxsj%2BpdosNA%3D%3D&numOfRows=5000&MobileOS=ETC&MobileApp=TestApp&_type=json`
+        `https://api.visitkorea.or.kr/openapi/service/rest/GoCamping/basedList?ServiceKey=eoa%2FGqND7kc4kFyYrprGMRO2HR7PqGaqIpR197C4GKlnXAHAU0SbPSWitA%2BbOwTpcKFeXNXbmFkMxsj%2BpdosNA%3D%3D&numOfRows=4000&MobileOS=ETC&MobileApp=TestApp&_type=json`
       );
 
       const json = await response.json();
