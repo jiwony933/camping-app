@@ -3,25 +3,25 @@ import styled from "@emotion/styled";
 
 function SearchPlace() {
   const [spot, setSpot] = useState([]);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(
-        `https://api.visitkorea.or.kr/openapi/service/rest/GoCamping/basedList?ServiceKey=eoa%2FGqND7kc4kFyYrprGMRO2HR7PqGaqIpR197C4GKlnXAHAU0SbPSWitA%2BbOwTpcKFeXNXbmFkMxsj%2BpdosNA%3D%3D&numOfRows=4000&MobileOS=ETC&MobileApp=TestApp&_type=json`
+        `https://api.visitkorea.or.kr/openapi/service/rest/GoCamping/searchList?ServiceKey=eoa%2FGqND7kc4kFyYrprGMRO2HR7PqGaqIpR197C4GKlnXAHAU0SbPSWitA%2BbOwTpcKFeXNXbmFkMxsj%2BpdosNA%3D%3D&numOfRows=5&pageNo=17&MobileOS=ETC&MobileApp=TestApp&_type=json&keyword=파크`
       );
 
       const json = await response.json();
       setSpot(json.response.body.items.item);
     };
     fetchData();
-  }, []);
+  }, [search]);
 
-  const [search, setSearch] = useState("");
   const onChange = (e) => {
     setSearch(e.target.value);
   };
   const filterName = spot.filter((p) => {
-    return p.facltNm.replace(" ", "").includes(search);
+    return p.facltNm.includes(search.replaceAll(" ", ""));
   });
 
   return (
