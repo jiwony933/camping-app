@@ -8,8 +8,10 @@ function MainBoardItems({ title }) {
 export default MainBoardItems;
 
 const Box = styled.div`
-  margin-bottom: 10px;
-  height: 60px;
+  margin: 10px;
+  height: 200px;
+  width: 100%;
+  margin-right: 10px;
   border-radius: 10px;
   font-size: 20px;
   display: flex;

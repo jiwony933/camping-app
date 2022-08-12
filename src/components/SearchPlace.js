@@ -8,7 +8,7 @@ function SearchPlace() {
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(
-        `https://api.visitkorea.or.kr/openapi/service/rest/GoCamping/searchList?ServiceKey=eoa%2FGqND7kc4kFyYrprGMRO2HR7PqGaqIpR197C4GKlnXAHAU0SbPSWitA%2BbOwTpcKFeXNXbmFkMxsj%2BpdosNA%3D%3D&numOfRows=5&pageNo=17&MobileOS=ETC&MobileApp=TestApp&_type=json&keyword=파크`
+        `https://api.visitkorea.or.kr/openapi/service/rest/GoCamping/searchList?ServiceKey=eoa%2FGqND7kc4kFyYrprGMRO2HR7PqGaqIpR197C4GKlnXAHAU0SbPSWitA%2BbOwTpcKFeXNXbmFkMxsj%2BpdosNA%3D%3D&numOfRows=100&pageNo=1&MobileOS=ETC&MobileApp=TestApp&_type=json&keyword=${search}`
       );
 
       const json = await response.json();
@@ -26,7 +26,12 @@ function SearchPlace() {
 
   return (
     <div>
-      <input type="text" value={search} onChange={onChange} />
+      <input
+        type="text"
+        value={search}
+        onChange={onChange}
+        placeholder="캠핑장을 검색하세요"
+      />
 
       <SearchResultBoard>
         {filterName.map((spot) => (

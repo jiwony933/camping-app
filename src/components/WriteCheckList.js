@@ -15,7 +15,7 @@ function WriteCheckList() {
 
   return (
     <div>
-      <h3>체크리스트</h3>
+      <h2>체크리스트</h2>
       <form onSubmit={onSubmit}>
         <input
           type="text"
