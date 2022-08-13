@@ -7,7 +7,7 @@ import Nav from "./components/Nav.js";
 import Schedule from "./components/WriteSchedule";
 import Diary from "./components/diary/DiaryList";
 import CheckList from "./components/WriteCheckList";
-import Place from "./components/SearchPlace";
+import Place from "./components/Spot/SearchPlace";
 import MyPage from "./components/MyPage";
 import AppRouter from "./components/router";
 import { authService } from "./fbase";

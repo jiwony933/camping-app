@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
+import SpotDetail from "./SpotDetail";
 
 function SearchPlace() {
   const [spot, setSpot] = useState([]);
@@ -23,6 +24,10 @@ function SearchPlace() {
   const filterName = spot.filter((p) => {
     return p.facltNm.includes(search.replaceAll(" ", ""));
   });
+  const [selected, setSelected] = useState();
+  const handleSpotClick = (contentId) => {
+    setSelected(spot.find((el) => el.contentId === contentId));
+  };
 
   return (
     <div>
@@ -36,13 +41,14 @@ function SearchPlace() {
         />
 
         {filterName.map((spot) => (
-          <SearchResult>
+          <SearchResult onClick={() => handleSpotClick(spot.contentId)}>
             <strong>{spot.facltNm}</strong>
             {"\n"}
             {spot.addr1}
           </SearchResult>
         ))}
       </SearchBoard>
+      {selected && <SpotDetail selected={selected} setSelected={setSelected} />}
     </div>
   );
 }
