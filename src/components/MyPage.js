@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function MyPage() {
   return (
     <MyPageContainer>
-      <h3>마이 페이지</h3>
+      <h2>마이 페이지</h2>
       <MyInfo>
         <MyImage
           alt="프로필 사진"
@@ -14,7 +14,7 @@ function MyPage() {
         <MyNickname>리원리</MyNickname>
       </MyInfo>
       <MyContent>
-        <span> 📝 내가 쓴 글</span>
+        <b> 📝 내가 쓴 글</b>
         <hr />
         <Link to="/diary">
           <span>내가 쓴 캠핑 일기</span>
@@ -26,7 +26,7 @@ function MyPage() {
       </MyContent>
       <hr />
       <LikedContent>
-        <span> 🤍 내가 좋아한 콘텐츠</span>
+        <b> 🤍 내가 좋아한 콘텐츠</b>
         <hr />
         <span> 내가 좋아한 캠핑장</span>
         <hr />
@@ -48,25 +48,32 @@ const MyPageContainer = styled.div`
     border: 0.5px solid gray;
     width: 100%;
   }
-
-  link {
+  a {
+    text-decoration: none;
+  }
+  a:visited {
     text-decoration: none;
   }
 `;
 const MyInfo = styled.div`
-  height: 100px;
+  height: 130px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center;
   margin-bottom: 30px;
 `;
 
 const MyImage = styled.img`
   width: 100px;
+  height: 100px;
   border-radius: 50px;
   object-fit: cover;
+  margin-bottom: 5px;
 `;
 
-const MyNickname = styled.div``;
+const MyNickname = styled.div`
+  font-size: 20px;
+`;
 
 const MyContent = styled.div`
   display: flex;

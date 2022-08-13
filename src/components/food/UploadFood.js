@@ -1,3 +1,4 @@
+import styled from "@emotion/styled";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -16,15 +17,22 @@ function UploadFood() {
   };
 
   return (
-    <div>
-      upload food
+    <FoodContainer>
+      <span>upload food image</span>
       <input type="file" name="file" accept="image/*"></input>
       <div>image</div>
-      <h1>코멘트</h1>
+      <span>요리 이름</span>
+      <input type="text" />
+      <span>간단한 설명</span>
       <input type="text" />
       <button onClick={handleUpload}>upload</button>
-    </div>
+    </FoodContainer>
   );
 }
 
 export default UploadFood;
+
+const FoodContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;

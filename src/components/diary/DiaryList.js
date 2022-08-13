@@ -7,19 +7,19 @@ import { Link } from "react-router-dom";
 
 function DiaryList() {
   const [selected, setSelected] = useState();
-  const handleDiaryClick = () => {
-    setSelected();
+  const handleDiaryClick = (id) => {
+    setSelected(diaryListDummy.find((el) => el.id == id));
   };
-  const handleDiaryUpload = () => {};
+
   return (
     <DiaryContainer>
       <Title>나의 캠핑 기록</Title>
-      <Link to="/diary/upload">
-        <UploadButton onClick={handleDiaryUpload}>일기 쓰기</UploadButton>
-      </Link>
-      <DiaryItemBoard onClick={handleDiaryClick}>
+      <DiaryItemBoard>
+        <Link to="/diary/upload">
+          <UploadButton> ✏️ 일기 쓰기</UploadButton>
+        </Link>
         {diaryListDummy.map((item) => (
-          <DiaryItem>
+          <DiaryItem onClick={() => handleDiaryClick(item.id)}>
             <DiaryImg>
               <img src={item.image} />
             </DiaryImg>
@@ -32,7 +32,10 @@ function DiaryList() {
           </DiaryItem>
         ))}
       </DiaryItemBoard>
-      <DiaryDetail />
+
+      {selected && (
+        <DiaryDetail selected={selected} setSelected={setSelected} />
+      )}
     </DiaryContainer>
   );
 }
@@ -56,12 +59,13 @@ const DiaryItemBoard = styled.div`
 
 const DiaryItem = styled.div`
   height: 130px;
-  width: 100vw;
+  width: 90vw;
   display: flex;
   flex-direction: row;
-  background-color: beige;
-  border-radius: 10px;
+  background-color: white;
+  border-radius: 20px;
   margin-bottom: 10px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 `;
 
 const DiaryImg = styled.div`
@@ -92,13 +96,13 @@ const DiaryText = styled.div`
   }
 `;
 const UploadButton = styled.button`
+  height: 80px;
+  width: 90vw;
+  background-color: #e2f1fc;
+  border-radius: 20px;
+  margin-bottom: 10px;
   border: none;
-  background-color: black;
-  color: white;
-  height: 30px;
-
-  :active {
-    background-color: white;
-    color: black;
-  }
+  text-align: center;
+  font-size: 20px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 `;

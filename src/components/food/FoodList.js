@@ -6,7 +6,6 @@ import { foodListDummy } from "./foodList.dummy";
 
 const FoodList = () => {
   const [selected, setSelected] = useState();
-
   const handleFoodItemClick = (id) => {
     setSelected(foodListDummy.find((el) => el.id === id));
   };

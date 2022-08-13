@@ -13,7 +13,7 @@ function Nav() {
   return (
     <Navibox>
       {items.map((item) => (
-        <Link to={item.link}>
+        <Link to={item.link} key={item.title}>
           <NavButton>{item.title}</NavButton>
         </Link>
       ))}
@@ -32,6 +32,9 @@ const Navibox = styled.div`
   bottom: 0;
   justify-content: space-around;
   align-items: center;
+  a {
+    text-decoration: none;
+  }
 `;
 const NavButton = styled.div`
   width: 25%;

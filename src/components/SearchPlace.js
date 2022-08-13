@@ -26,14 +26,15 @@ function SearchPlace() {
 
   return (
     <div>
-      <input
-        type="text"
-        value={search}
-        onChange={onChange}
-        placeholder="캠핑장을 검색하세요"
-      />
+      <h2>캠핑장 검색</h2>
+      <SearchBoard>
+        <SeachBar
+          type="text"
+          value={search}
+          onChange={onChange}
+          placeholder="캠핑장을 검색하세요"
+        />
 
-      <SearchResultBoard>
         {filterName.map((spot) => (
           <SearchResult>
             <strong>{spot.facltNm}</strong>
@@ -41,22 +42,30 @@ function SearchPlace() {
             {spot.addr1}
           </SearchResult>
         ))}
-      </SearchResultBoard>
+      </SearchBoard>
     </div>
   );
 }
 
-const SearchResultBoard = styled.div`
+const SearchBoard = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
+
+const SeachBar = styled.input`
+  width: 80vw;
+  height: 40px;
+  font-size: 20px;
+  margin-bottom: 20px;
+`;
+
 const SearchResult = styled.div`
   background-color: white;
   height: 40px;
   border-radius: 5px;
-  font-size: 13px;
-  width: 90%;
+  font-size: 14px;
+  width: 80vw;
   margin-bottom: 5px;
   padding: 5px;
 `;

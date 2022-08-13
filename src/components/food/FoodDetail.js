@@ -6,7 +6,7 @@ const FoodDetail = ({ selected, setSelected }) => {
       <Overlay onClick={() => setSelected()} />
       <Content>
         <img src={selected.image} alt={selected.comment} />
-        <Comment>{selected.comment}askldjacopashcpasjc</Comment>
+        <Comment>{selected.comment}</Comment>
         <Date>{selected.uploadDate}</Date>
       </Content>
     </>
@@ -40,9 +40,9 @@ const Content = styled.div`
 
   img {
     border-radius: 8px;
-    /* height: 240px;
+    object-fit: cover;
+    height: 240px;
     width: 240px;
-    object-fit: cover; */
   }
 `;
 
