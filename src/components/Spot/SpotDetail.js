@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
+import { NaverMap } from "react-naver-maps";
 
 function SpotDetail({ selected, setSelected }) {
   return (
@@ -7,10 +8,11 @@ function SpotDetail({ selected, setSelected }) {
       <Overlay />
       <CloseButton onClick={() => setSelected()}>X</CloseButton>
       <Content>
-        <h3>{selected.facltNm}</h3>
+        <Title>{selected.facltNm}</Title>
         <img src={selected.firstImageUrl} alt="이미지를 준비중입니다" />
         <Text>주소 : {selected.addr1}</Text>
         <Text>전화번호 : {selected.tel}</Text>
+        <hr />
         <Text>
           전체 사이트 수 :{" "}
           {Number(selected.gnrlSiteCo) +
@@ -20,6 +22,7 @@ function SpotDetail({ selected, setSelected }) {
             Number(selected.indvdlCaravSiteCo)}
         </Text>
         <Text>반려 동물 출입 : {selected.animalCmgCl}</Text>
+        {/* <NaverMap defaultCenter={{ lat: selected.mapX, lng: selected.mapY }} /> */}
       </Content>
     </>
   );
@@ -41,9 +44,9 @@ const Overlay = styled.div`
 const CloseButton = styled.button`
   z-index: 1005;
   position: fixed;
-  right: 10%;
-  top: 10%;
-  background-color: pink;
+  right: 6%;
+  top: 5.5%;
+  background-color: gray;
   color: white;
   border: none;
   width: 30px;
@@ -54,25 +57,33 @@ const CloseButton = styled.button`
 const Content = styled.div`
   z-index: 1001;
   position: fixed;
-  top: 10%;
-  left: 10%;
-  width: 80%;
-  height: 500px;
+  top: 5%;
+  left: 5%;
+  width: 90%;
+  height: 80vh;
   background-color: white;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
   overflow: scroll;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 
   img {
-    width: 80%;
+    width: 100%;
     margin-bottom: 20px;
-    border-radius: 20px;
+    height: 40%;
+    object-fit: cover;
   }
+`;
+const Title = styled.h3`
+  text-align: center;
 `;
 
 const Text = styled.div`
   font-size: 15px;
   margin-bottom: 5px;
+  margin-left: 20px;
+  margin-right: 20px;
 `;

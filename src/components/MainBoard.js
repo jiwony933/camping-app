@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// import MainBoardItems from "./MainBoardItems";
 import styled from "@emotion/styled";
+import { useRecoilState } from "recoil";
+import { loginState } from "../atoms/loginState";
 
 const items = [
   { id: 1, title: "캠핑 일정 등록", link: "/schedule" },
@@ -11,8 +12,12 @@ const items = [
 ];
 
 function MainBoard() {
+  const [isLogged, setIsLogged] = useRecoilState(loginState);
+
   return (
     <Menu>
+      <p>{isLogged ? "로그인됨" : "로그인 안됨"}</p>
+      <button onClick={() => setIsLogged(false)}>로그아웃</button>
       {items.map((item) => (
         <Link to={item.link} key={item.id}>
           <MainBoardItems>{item.title}</MainBoardItems>

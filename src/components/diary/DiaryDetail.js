@@ -33,8 +33,9 @@ const Overlay = styled.div`
 const CloseButton = styled.button`
   z-index: 1005;
   position: fixed;
-  right: 10%;
-  background-color: pink;
+  top: 8%;
+  right: 12%;
+  background-color: gray;
   color: white;
   border: none;
   width: 30px;
@@ -55,7 +56,7 @@ const DiaryBox = styled.div`
   overflow: scroll;
 
   img {
-    width: 80%;
+    width: 100%;
     margin-bottom: 20px;
   }
 `;

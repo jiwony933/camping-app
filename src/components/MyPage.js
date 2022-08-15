@@ -1,10 +1,22 @@
 import styled from "@emotion/styled";
 import React from "react";
 import { Link } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { loginState } from "../atoms/loginState";
 
 function MyPage() {
+  const [isLogged, setIsLogged] = useRecoilState(loginState);
+
   return (
     <MyPageContainer>
+      <button
+        onClick={() => {
+          setIsLogged(true);
+        }}
+      >
+        로그인
+      </button>
+      <p>{isLogged ? "로그인됨" : "로그인 안됨"}</p>
       <h2>마이 페이지</h2>
       <MyInfo>
         <MyImage
@@ -13,27 +25,24 @@ function MyPage() {
         ></MyImage>
         <MyNickname>리원리</MyNickname>
       </MyInfo>
-      <MyContent>
-        <b> 📝 내가 쓴 글</b>
-        <hr />
-        <Link to="/diary">
-          <span>내가 쓴 캠핑 일기</span>
-        </Link>
-        <hr />
-        <Link to="/food">
-          <span> 내가 쓴 캠핑 요리</span>
-        </Link>
-      </MyContent>
+
+      <MenuTitle> 📝 내가 쓴 글</MenuTitle>
       <hr />
-      <LikedContent>
-        <b> 🤍 내가 좋아한 콘텐츠</b>
-        <hr />
-        <span> 내가 좋아한 캠핑장</span>
-        <hr />
-        <span> 내가 좋아한 다른 사람 일기</span>
-        <hr />
-        <span> 내가 좋아한 다른 사람 요리</span>
-      </LikedContent>
+      <Link to="/diary">
+        <MenuItem>내가 쓴 캠핑 일기</MenuItem>
+      </Link>
+      <hr />
+      <Link to="/food">
+        <MenuItem> 내가 쓴 캠핑 요리</MenuItem>
+      </Link>
+      <hr />
+      <MenuTitle> 🤍 내가 좋아한 콘텐츠</MenuTitle>
+      <hr />
+      <MenuItem> 내가 좋아한 캠핑장</MenuItem>
+      <hr />
+      <MenuItem> 내가 좋아한 다른 사람 일기</MenuItem>
+      <hr />
+      <MenuItem> 내가 좋아한 다른 사람 요리</MenuItem>
     </MyPageContainer>
   );
 }
@@ -49,9 +58,6 @@ const MyPageContainer = styled.div`
     width: 100%;
   }
   a {
-    text-decoration: none;
-  }
-  a:visited {
     text-decoration: none;
   }
 `;
@@ -75,11 +81,13 @@ const MyNickname = styled.div`
   font-size: 20px;
 `;
 
-const MyContent = styled.div`
-  display: flex;
-  flex-direction: column;
+const MenuTitle = styled.div`
+  font-size: 18px;
+  font-weight: 600;
+  margin-left: 14px;
 `;
-const LikedContent = styled.div`
-  display: flex;
-  flex-direction: column;
+
+const MenuItem = styled.div`
+  font-size: 16px;
+  margin-left: 30px;
 `;

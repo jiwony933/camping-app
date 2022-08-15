@@ -1,11 +1,9 @@
 import styled from "@emotion/styled";
 import React from "react";
 import { useState } from "react";
-import { Navigate } from "react-router-dom";
 
 function UploadDiary() {
   const weatherIndex = ["선택", "----", "맑음", "흐림", "비", "눈", "태풍"];
-  console.log(weatherIndex);
   const [title, setTitle] = useState("");
   const onTitleChange = (e) => {
     setTitle(e.target.value);
@@ -18,14 +16,27 @@ function UploadDiary() {
   const onWeatherChange = (e) => {
     setWeather(e.target.value);
   };
-  const [image, setImage] = useState();
+  const [image, setImage] = useState("");
   const onImageChange = (e) => {
-    setImage(e.target.value);
+    const reader = new FileReader();
+    const files = e.target.files;
+
+    reader.onload = function (e) {
+      console.log(e.target.result);
+      setImage(e.target.result);
+    };
+
+    if (files[0]) {
+      reader.readAsDataURL(files[0]);
+    }
   };
+
+  console.log(image);
+
   const onSubmit = () => {};
   return (
     <UploadContainer>
-      <h3>캠핑 일기 쓰기</h3>
+      <h2>캠핑 일기 쓰기</h2>
       <span>다녀온 날짜</span>
       <input type="date" />
       <span>그날 날씨</span>
@@ -43,18 +54,19 @@ function UploadDiary() {
       />
       <span>기록</span>
       <textarea
-        rows="10"
+        rows="5"
         value={context}
         onChange={onContextChange}
-        placeholder="어떤 일이 있었고, 어떤 생각을 했나요?"
+        placeholder="어떤 일이 있었고,              어떤 생각을 했나요?"
       ></textarea>
       <span>사진</span>
       <input
         type="file"
-        value={image}
+        // value={image}
         onChange={onImageChange}
         accept="image/*"
       />
+      {image && <img src={image} />}
       <ButtonArea>
         <SaveButton>임시 저장</SaveButton>
         <UploadButton onSubmit={onSubmit}>저장하기</UploadButton>
@@ -71,15 +83,25 @@ const UploadContainer = styled.form`
   align-items: center;
 
   span {
-    text-align: left !important;
+    margin-top: 10px;
+    margin-bottom: 5px;
   }
 
   input {
-    width: 100%;
+    width: 90%;
+    height: 25px;
+    font-size: 16px;
   }
 
   textarea {
-    width: 100%;
+    width: 90%;
+    font-size: 16px;
+    line-height: 140%;
+  }
+
+  select {
+    width: 90%;
+    height: 25px;
   }
 `;
 

@@ -4,9 +4,14 @@ import { useState } from "react";
 import { diaryListDummy } from "./diary.dummy";
 import DiaryDetail from "./DiaryDetail";
 import { Link } from "react-router-dom";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { loginState } from "../../atoms/loginState";
+import { isFocusable } from "@testing-library/user-event/dist/utils";
+import { diaryListState } from "atoms/diaryListState";
 
 function DiaryList() {
   const [selected, setSelected] = useState();
+  const [diarys, setDiarys] = useRecoilState(diaryListState);
   const handleDiaryClick = (id) => {
     setSelected(diaryListDummy.find((el) => el.id == id));
   };
@@ -24,10 +29,9 @@ function DiaryList() {
               <img src={item.image} />
             </DiaryImg>
             <DiaryText>
-              <span>{item.campingDate}</span>
-              <b>{item.title}</b>
-              <span>{item.comment}</span>
-              <span>날씨 : {item.weather}</span>
+              <Text>{item.campingDate}</Text>
+              <Text>{item.title}</Text>
+              <SmallText>{item.comment}</SmallText>
             </DiaryText>
           </DiaryItem>
         ))}
@@ -84,17 +88,24 @@ const DiaryText = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  margin: 8px;
-
-  span {
-    overflow: hidden;
-    white-space: normal;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-  }
+  margin: 10px;
 `;
+const SmallText = styled.div`
+  font-size: 15px;
+  overflow: hidden;
+  white-space: normal;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+`;
+
+const Text = styled.div`
+  font-size: 17px;
+  font-weight: 500;
+  margin-bottom: 5px;
+`;
+
 const UploadButton = styled.button`
   height: 80px;
   width: 90vw;
