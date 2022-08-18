@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
 import { useRecoilState } from "recoil";
 import { loginState } from "../atoms/loginState";
+import LoginBox from "./MyPage/LoginBox";
 
 const items = [
   { id: 1, title: "캠핑 일정 등록", link: "/schedule" },
@@ -15,15 +16,23 @@ function MainBoard() {
   const [isLogged, setIsLogged] = useRecoilState(loginState);
 
   return (
-    <Menu>
-      <p>{isLogged ? "로그인됨" : "로그인 안됨"}</p>
-      <button onClick={() => setIsLogged(false)}>로그아웃</button>
-      {items.map((item) => (
-        <Link to={item.link} key={item.id}>
-          <MainBoardItems>{item.title}</MainBoardItems>
-        </Link>
-      ))}
-    </Menu>
+    <>
+      {isLogged ? (
+        <h4> ㅇㅇㅇ님! 안녕하세요</h4>
+      ) : (
+        <>
+          로그인을 해주세요!
+          <button onClick={() => setIsLogged(true)}>로그인</button>
+        </>
+      )}
+      <Menu>
+        {items.map((item) => (
+          <Link to={item.link} key={item.id}>
+            <MainBoardItems>{item.title}</MainBoardItems>
+          </Link>
+        ))}
+      </Menu>
+    </>
   );
 }
 export default MainBoard;

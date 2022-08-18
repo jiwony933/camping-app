@@ -1,22 +1,34 @@
 import styled from "@emotion/styled";
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { diaryListState } from "atoms/diaryListState";
 
 function UploadDiary() {
+  const navigate = useNavigate();
+  const [diarys, setDiarys] = useRecoilState(diaryListState);
+
   const weatherIndex = ["선택", "----", "맑음", "흐림", "비", "눈", "태풍"];
-  const [title, setTitle] = useState("");
+
+  const [campingDate, setCampingDate] = useState();
+  const onCampingDateChange = (e) => {
+    setCampingDate(e.target.value);
+  };
+
+  const [title, setTitle] = useState();
   const onTitleChange = (e) => {
     setTitle(e.target.value);
   };
-  const [context, setContext] = useState("");
-  const onContextChange = (e) => {
-    setContext(e.target.value);
+  const [comment, setComment] = useState();
+  const onCommentChange = (e) => {
+    setComment(e.target.value);
   };
   const [weather, setWeather] = useState();
   const onWeatherChange = (e) => {
     setWeather(e.target.value);
   };
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState();
   const onImageChange = (e) => {
     const reader = new FileReader();
     const files = e.target.files;
@@ -31,14 +43,25 @@ function UploadDiary() {
     }
   };
 
-  console.log(image);
+  const onSubmit = () => {
+    setDiarys(
+      diarys.concat({
+        id: 5,
+        campingDate: campingDate,
+        weather: weather,
+        image: image,
+        title: title,
+        comment: comment,
+      })
+    );
+    navigate("/diary");
+  };
 
-  const onSubmit = () => {};
   return (
     <UploadContainer>
       <h2>캠핑 일기 쓰기</h2>
       <span>다녀온 날짜</span>
-      <input type="date" />
+      <input type="date" value={campingDate} onChange={onCampingDateChange} />
       <span>그날 날씨</span>
       <select value={weather} onChange={onWeatherChange}>
         {weatherIndex.map((item) => (
@@ -55,8 +78,8 @@ function UploadDiary() {
       <span>기록</span>
       <textarea
         rows="5"
-        value={context}
-        onChange={onContextChange}
+        value={comment}
+        onChange={onCommentChange}
         placeholder="어떤 일이 있었고,              어떤 생각을 했나요?"
       ></textarea>
       <span>사진</span>
@@ -66,10 +89,10 @@ function UploadDiary() {
         onChange={onImageChange}
         accept="image/*"
       />
-      {image && <img src={image} />}
+      {image && <img src={image} width="250px" />}
       <ButtonArea>
         <SaveButton>임시 저장</SaveButton>
-        <UploadButton onSubmit={onSubmit}>저장하기</UploadButton>
+        <UploadButton onClick={onSubmit}>저장하기</UploadButton>
       </ButtonArea>
     </UploadContainer>
   );
@@ -81,6 +104,7 @@ const UploadContainer = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 90px;
 
   span {
     margin-top: 10px;

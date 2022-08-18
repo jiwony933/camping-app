@@ -13,7 +13,7 @@ function DiaryList() {
   const [selected, setSelected] = useState();
   const [diarys, setDiarys] = useRecoilState(diaryListState);
   const handleDiaryClick = (id) => {
-    setSelected(diaryListDummy.find((el) => el.id == id));
+    setSelected(diarys.find((el) => el.id == id));
   };
 
   return (
@@ -23,7 +23,7 @@ function DiaryList() {
         <Link to="/diary/upload">
           <UploadButton> ✏️ 일기 쓰기</UploadButton>
         </Link>
-        {diaryListDummy.map((item) => (
+        {diarys.map((item) => (
           <DiaryItem onClick={() => handleDiaryClick(item.id)}>
             <DiaryImg>
               <img src={item.image} />

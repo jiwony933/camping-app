@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { foodListState } from "../../atoms/foodListState";
 import FoodDetail from "./FoodDetail";
-import { foodListDummy } from "./foodList.dummy";
 
 const FoodList = () => {
   const [selected, setSelected] = useState();
