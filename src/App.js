@@ -1,25 +1,26 @@
 import React from "react";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import MainBoard from "./components/MainBoard.js";
 import Nav from "./components/Nav.js";
-import Schedule from "./components/WriteSchedule";
-import Diary from "./components/diary/DiaryList";
+import Schedule from "./components/Schedule";
+import Diary from "./components/Diary/DiaryList";
 import CheckList from "./components/CheckList/WriteCheckList";
 import Place from "./components/Spot/SearchPlace";
-import MyPage from "./components/MyPage/MyPage";
-import FoodList from "components/food/FoodList";
-import UploadFood from "components/food/UploadFood";
-import UploadDiary from "components/diary/UploadDiary";
+import MyPage from "./components/MyPage/index";
+import FoodList from "components/Food/FoodList";
+import UploadFood from "components/Food/UploadFood";
+import UploadDiary from "components/Diary/UploadDiary";
 import { RecoilRoot } from "recoil";
+import Home from "./components/Home/index.js";
+import Logo from "layout/Logo";
 
 function App() {
   return (
     <RecoilRoot>
       <BrowserRouter>
-        <div>Logo</div>
+        <Logo />
         <Routes>
-          <Route path="/" element={<MainBoard />} />
+          <Route path="/" element={<Home />} />
           <Route path="/schedule" element={<Schedule />} />
           <Route path="/diary" element={<Diary />} />
           <Route path="/diary/upload" element={<UploadDiary />} />

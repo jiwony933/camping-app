@@ -4,7 +4,7 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import axios from "axios";
 
-function WriteSchedule() {
+function Schedule() {
   const [value, onChange] = useState(new Date());
   const [searchWord, setSearchWord] = useState("");
   const onKeywordChange = (event) => {
@@ -33,7 +33,7 @@ function WriteSchedule() {
   );
 }
 
-export default WriteSchedule;
+export default Schedule;
 
 const Button = styled.button`
   background-color: red;

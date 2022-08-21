@@ -2,11 +2,11 @@ import styled from "@emotion/styled";
 import React from "react";
 import CheckListBox from "./WriteCheckListBox";
 
-function CheckListBoard(props) {
+function CheckListBoard({ qwe }) {
   return (
     <div>
-      {props.items.map((item) => (
-        <CheckListBox item={item} />
+      {qwe.map((item) => (
+        <CheckListBox asd={item} />
       ))}
     </div>
   );

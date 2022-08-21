@@ -1,10 +1,10 @@
 import styled from "@emotion/styled";
 import React from "react";
 
-function CheckListBox(props) {
+function CheckListBox({ asd }) {
   return (
     <Box>
-      {props.item}
+      {asd}
       <button>delete</button>
     </Box>
   );

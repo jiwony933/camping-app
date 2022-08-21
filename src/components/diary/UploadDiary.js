@@ -7,7 +7,9 @@ import { diaryListState } from "atoms/diaryListState";
 
 function UploadDiary() {
   const navigate = useNavigate();
-  const [diarys, setDiarys] = useRecoilState(diaryListState);
+  const [diaries, setDiaries] = useRecoilState(diaryListState);
+
+  console.log(diaries.length, diaries);
 
   const weatherIndex = ["선택", "----", "맑음", "흐림", "비", "눈", "태풍"];
 
@@ -44,9 +46,9 @@ function UploadDiary() {
   };
 
   const onSubmit = () => {
-    setDiarys(
-      diarys.concat({
-        id: 5,
+    setDiaries(
+      diaries.concat({
+        id: diaries.length + 1,
         campingDate: campingDate,
         weather: weather,
         image: image,
