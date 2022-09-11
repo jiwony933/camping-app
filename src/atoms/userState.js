@@ -4,7 +4,7 @@ export const userState = atom({
   key: "userState",
   default: {
     id: 1,
-    name: "jiwon",
+    name: "jiwonnnnn",
     age: 18,
   },
 });

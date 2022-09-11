@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import React, { useState } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-import MenuItem from "./MenuItem";
+import MenuItem from "../MenuItem";
 
 const menus = [
   { title: "캠핑 일정 검색" },

@@ -9,8 +9,8 @@ const LoginBox = () => {
   return (
     <Container>
       <LoginAlert>로그인을 해주세요</LoginAlert>
-      아이디<LoginInput type="text"></LoginInput>
-      비밀번호<LoginInput type="password"></LoginInput>
+      아이디<LoginInput type="text" required></LoginInput>
+      비밀번호<LoginInput type="password" required></LoginInput>
       <Button
         onClick={() => {
           setIsLogged(true);

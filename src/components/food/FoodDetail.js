@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import Overlay from "layout/Overlay";
 
 const FoodDetail = ({ selected, setSelected }) => {
   return (
@@ -14,16 +15,6 @@ const FoodDetail = ({ selected, setSelected }) => {
 };
 
 export default FoodDetail;
-
-const Overlay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 1001;
-`;
 
 const Content = styled.div`
   position: fixed;

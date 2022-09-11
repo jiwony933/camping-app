@@ -5,7 +5,7 @@ export const foodListState = atom({
   default: [
     {
       id: 1,
-      comment: "핵 존 맛",
+      comment: "라면",
       image:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRgH9B0WMhDpPo9vcsuWModkzH1GNm6I0HVJFPKBjvNg&s",
       uploadDate: "2022-07-24",
@@ -32,7 +32,7 @@ export const foodListState = atom({
     },
     {
       id: 5,
-      comment: "핵 존 맛",
+      comment: "고기",
       image:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRgH9B0WMhDpPo9vcsuWModkzH1GNm6I0HVJFPKBjvNg&s",
       uploadDate: "2022-07-24",

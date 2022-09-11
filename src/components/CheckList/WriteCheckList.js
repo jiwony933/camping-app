@@ -1,72 +1,110 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "@emotion/styled";
-import CheckListBoard from "./WriteCheckListBoard";
+
+import CheckListItemList from "./CheckListItemList";
+
+import { useRecoilState } from "recoil";
+import { checkListState } from "atoms/checkListState";
 
 function WriteCheckList() {
-  const [toolItem, setToolItem] = useState("");
-  const [foodItem, setFoodItem] = useState("");
-  const [toolItems, setToolItems] = useState([]);
-  const [foodItems, setFoodItems] = useState([]);
-  const onToolChange = (e) => {
-    setToolItem(e.target.value);
-  };
-  const onFoodChange = (e) => {
-    setFoodItem(e.target.value);
-  };
-  const onToolSubmit = (e) => {
-    e.preventDefault();
-    setToolItems((cur) => [toolItem, ...cur]);
-    setToolItem("");
-  };
-  const onFoodSubmit = (e) => {
-    e.preventDefault();
-    setFoodItems((cur) => [foodItem, ...cur]);
-    setFoodItem("");
-  };
+    const [toolItem, setToolItem] = useState("");
+    const [toolItems, setToolItems] = useState([]);
+    const [toolItemClicked, setToolItemClicked] = useState(false);
+    const [allClicked, setAllClicked] = useState("checked");
 
-  return (
-    <div>
-      <h2>체크리스트</h2>
-      <form onSubmit={onToolSubmit}>
-        <ChckInput
-          type="text"
-          placeholder="장비 준비물"
-          onChange={onToolChange}
-          value={toolItem}
-        />
-        <button>add</button>
-      </form>
-      <form onSubmit={onFoodSubmit}>
-        <ChckInput
-          type="text"
-          placeholder="음식 준비물"
-          onChange={onFoodChange}
-          value={foodItem}
-        />
-        <button>add</button>
-      </form>
-      <ItemTitle>tool</ItemTitle>
-      <CheckListBoard qwe={toolItems} />
-      <ItemTitle>food</ItemTitle>
-      <CheckListBoard qwe={foodItems} />
-    </div>
-  );
+    const [checkList, setCheckList] = useRecoilState(checkListState);
+
+    const toolItemChange = (e) => {
+        setToolItem(e.target.value);
+    };
+
+    const toolItemSubmit = (e) => {
+        e.preventDefault();
+        setToolItems((cur) => [...cur, toolItem]);
+        setToolItem("");
+    };
+
+    const [foodItem, setFoodItem] = useState("");
+    const [foodItems, setFoodItems] = useState([]);
+
+    const foodItemChange = (e) => {
+        setFoodItem(e.target.value);
+    };
+
+    const foodItemSubmit = (e) => {
+        e.preventDefault();
+        setFoodItems((cur) => [
+            ...cur,
+            { item: foodItem, checked: "unchecked" },
+        ]);
+        setFoodItem("");
+    };
+
+    // { id: 3, item: "의자", checked: "checked" },
+
+    return (
+        <Container>
+            <CheckListForm className="toolItemInput" onSubmit={toolItemSubmit}>
+                <ItemInput
+                    type="text"
+                    placeholder="챙길 아이템"
+                    value={toolItem}
+                    onChange={toolItemChange}
+                />
+                <AddButton>추가</AddButton>
+            </CheckListForm>
+            <CheckListForm className="toolItemInput" onSubmit={foodItemSubmit}>
+                <ItemInput
+                    type="text"
+                    placeholder="장봐야 할 것"
+                    value={foodItem}
+                    onChange={foodItemChange}
+                />
+                <AddButton>추가</AddButton>
+            </CheckListForm>
+            <CheckListTitle>챙길 장비</CheckListTitle>
+            <CheckListItemList props={checkList} />
+            <CheckListTitle>장 봐야할 것</CheckListTitle>
+            <CheckListItemList props={checkList} />
+        </Container>
+    );
 }
 
 export default WriteCheckList;
 
-const ChckInput = styled.input`
-  width: 80%;
-  height: 20px;
-  margin-bottom: 10px;
+const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
 `;
 
-const ItemTitle = styled.div`
-  height: 30px;
-  width: 90%;
-  background-color: blue;
-  color: white;
-  border-radius: 10px;
-  margin-bottom: 10px;
-  padding-left: 10px;
+const CheckListForm = styled.form`
+    width: 100%;
+    display: flex;
+    justify-content: center;
+`;
+
+const ItemInput = styled.input`
+    all: unset;
+    width: 80%;
+    background-color: white;
+    height: 3em;
+
+    ::placeholder {
+        margin-left: 20px;
+    }
+`;
+
+const AddButton = styled.button`
+    all: unset;
+    background-color: blue;
+    color: white;
+    padding: 10px;
+`;
+
+const CheckListTitle = styled.div`
+    background-color: lightblue;
+    width: 80%;
+    padding: 10px;
 `;

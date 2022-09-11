@@ -2,10 +2,9 @@ import styled from "@emotion/styled";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import axios from "axios";
 import { foodListState } from "../../atoms/foodListState";
-import FoodDetail from "./FoodDetail";
-import FoodItem from "./Item";
+import FoodDetail from "../Food/FoodDetail";
+import FoodItem from "../Food/Item";
 
 const FoodList = () => {
     const [selected, setSelected] = useState("");
@@ -16,11 +15,8 @@ const FoodList = () => {
     };
 
     useEffect(() => {
-        const fetch = async () => {
-            const { data } = await axios.get("http://localhost:8000/api/foods");
-            setFoods(data);
-        };
-        fetch();
+        //   TODO: get my food list // login하라는 화면을 보여줌
+        // check logged state
     }, []);
 
     return (

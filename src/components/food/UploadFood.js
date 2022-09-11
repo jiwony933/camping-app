@@ -22,7 +22,7 @@ function UploadFood() {
     const today = new Date();
     setFoods(
       foods.concat({
-        id: 10,
+        id: foods.length,
         comment: foodComment,
         image: foodImage,
         uploadDate:
@@ -53,26 +53,48 @@ function UploadFood() {
   // };
 
   return (
-    <FoodContainer>
+    <Container>
       <h2>캠핑 요리</h2>
-      <span>사진</span>
+      <Title>사진</Title>
       <input
         type="file"
         name="file"
         accept="image/*"
         onChange={imageChange}
       ></input>
-      <span>comment</span>
-      <input type="text" onChange={commentChange} />
+      <Title>요리 이름</Title>
+      <NameInput type="text" onChange={commentChange} />
       {/* <button onClick={handleUpload}>upload</button> */}
-      <button onClick={handleUploadClick}>저장하기</button>
-    </FoodContainer>
+      <Button onClick={handleUploadClick}>저장하기</Button>
+    </Container>
   );
 }
 
 export default UploadFood;
 
-const FoodContainer = styled.div`
+const Container = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+  gap: 10px;
+`;
+
+const Title = styled.span`
+  font-size: 20px;
+  margin-bottom: 10px;
+`;
+
+const NameInput = styled.input`
+  width: 80%;
+`;
+
+const Button = styled.button`
+  all: unset;
+  background-color: black;
+  color: white;
+  width: 200px;
+  padding: 10px 0;
+  border-radius: 10px;
+  text-align: center;
 `;

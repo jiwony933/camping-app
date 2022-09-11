@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import SpotDetail from "./SpotDetail";
 
-function SearchPlace() {
+function SearchSpot() {
   const [spots, setSpots] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -90,4 +90,4 @@ const SearchResult = styled.div`
   }
 `;
 
-export default SearchPlace;
+export default SearchSpot;
